@@ -12,7 +12,7 @@ Versões e funcionalidades
 
 
 Time
-====
+----
 
 - Eduardo Andre (Programador)
 - Leandro T. Andre (Analista desenvolvedor)
