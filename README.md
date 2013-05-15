@@ -1,4 +1,4 @@
 antenna
 =======
 
-Sistema de gerenciamento de mÃ­dia digital.
+Sistema de gerenciamento de mídia digital.
