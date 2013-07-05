@@ -10,10 +10,6 @@ import br.com.caelum.vraptor.Result;
 public class LoginController {
 	private final Result result;
 	
-	public LoginController(Result result) {
-		this.result = result;
-	}
-	
 	@Path("/")
 	public void login() {}
 }
