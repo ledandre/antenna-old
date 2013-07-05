@@ -34,7 +34,6 @@ public class IndexController {
 		result.include("variable", "VRaptor!");
 	}
 	
-	@Path("/")
-	public void login() {}
+
 
 }
