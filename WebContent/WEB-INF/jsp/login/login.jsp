@@ -7,19 +7,19 @@
 	</head>
 	<body>
 		<div class="container-fluid">
-			<div class="container">
+			<div class="span3 offset6 content">
 				<form class="form-signin">
 					<div class="input-prepend">
-						<spam class="add-on">
+						<span class="add-on">
 							<i class="icon-user"></i>
-						</spam>
+						</span>
 						<input type="text" autofocus required maxlength="12" class="input input-block-level">
 					</div>
 					<br>
 					<div class="input-prepend">
-						<spam class="add-on">
+						<span class="add-on">
 							<i class="icon-lock"></i>
-						</spam>
+						</span>
 						<input type="password" required maxlength="8" class="input input-block-level">
 					</div>
 					<br>
@@ -31,5 +31,6 @@
 		<!-- jquery/bootstrap js -->
 		<script src="http://code.jquery.com/jquery.js"></script>
 	    <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
+		<script scr="${pageContext.request.contextPath}/resources/js/main.css"></script>
 	</body>
 </html>
