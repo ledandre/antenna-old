@@ -8,15 +8,20 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.ledtom.antenna.domain.service.ChannelService;
+import br.com.ledtom.antenna.model.entity.Channel;
 
 @Resource
 @AllArgsConstructor
 public class ChannelController {
 	private final Result result;
+	private final ChannelService service;
 	
 	@Get
 	@Path("/channels")
-	public void list(){}
+	public void list(){
+		result.include("channels", service.list());
+	}
 	
 	@Get
 	@Path("/channels/form")
@@ -24,7 +29,9 @@ public class ChannelController {
 	
 	@Post
 	@Path("/channels")
-	public void create(){}
+	public void create(Channel channel){
+		service.save(channel);
+	}
 	
 	@Put
 	@Path("/channels/{id}")
