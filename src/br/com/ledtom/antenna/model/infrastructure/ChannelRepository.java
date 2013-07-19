@@ -12,5 +12,5 @@ public interface ChannelRepository {
 	
 	public Channel save(Channel channel);
 	
-	public Channel delete(Channel channel);
+	public void delete(Channel channel);
 }

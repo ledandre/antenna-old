@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,42 +30,27 @@
 							<div class="span12">
 								<ul class="breadcrumb">
 								  	<li><a href="home">Principal</a> <span class="divider">/</span></li>
-								  	<li class="active">Canais</li>
+								  	<li><a href="channels">Canais</a> <span class="divider">/</span></li>
+								  	<li class="active">Criar novo</li>
 								</ul>
 							</div>
 						</div>
 						<div class="row">
 							<div class="span12">
-								<button class="btn" onclick="javascript:location.href='channels/form'"><i class="icon-plus"></i> Novo canal</button><br><br>
-								<c:if test="${empty channels}">
-									Nenhum canal cadastrado.
-								</c:if>
-								<c:if test="${not empty channels}">
-									<table class="table table-striped">
-										<thead>
-											<tr>
-												<th>Nome</th>
-												<th>Descrição</th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-										<c:forEach items="${channels}" var="channel">
-										    <tr>
-										    	<td>${channel.name}</td>
-										    	<td>${channel.description}</td>
-										    	<td>
-														<a href="channels/edit/${channel.id}"><i class="icon-pencil"></a></i>
-														<i class="icon-ban-circle"></i>
-													    <button onclick="javascript:confirmRemove(${channel.id}, '${channel.name}');" class="btn btn-link"><i class="icon-remove"></i></button>
-												</td>
-										</c:forEach>
-										</tbody>
-									</table>
-									<form id="deleteForm" action="" method="POST">
-										<input type="hidden" name="_method" value="DELETE">
-									</form>
-								</c:if>
+								<form id="channelForm" class="form" action="${pageContext.request.contextPath}/channels" method="post">
+									<input type="hidden" name="channel.id" value="${channel.id}">
+									<input type="hidden" id="editMethod" name="_method" value="post">
+									<label>Nome do canal</label>
+									<input class="input input-block-level" name="channel.name" id="name" value="${channel.name}"><br>
+									<label>Descrição:</label>
+									<textarea rows="5" cols="10" class="input-block-level" name="channel.description">${channel.description}</textarea><br>
+									<c:if test="${empty channel.id}">
+										<button type="submit" class="btn btn-medium btn-success">Criar</button>
+									</c:if>
+									<c:if test="${not empty channel.id}">
+										<button type="button" onclick="javascript:sendEditForm();" class="btn btn-medium btn-success">Alterar</button>
+									</c:if>
+								</form>
 							</div>
 						</div>
 					</div>

@@ -10,12 +10,14 @@ import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.ledtom.antenna.domain.service.ChannelService;
 import br.com.ledtom.antenna.model.entity.Channel;
+import br.com.ledtom.antenna.sessioncomponents.ApplicationInfo;
 
 @Resource
 @AllArgsConstructor
 public class ChannelController {
 	private final Result result;
 	private final ChannelService service;
+	private final ApplicationInfo appInfo;
 	
 	@Get
 	@Path("/channels")
@@ -27,17 +29,31 @@ public class ChannelController {
 	@Path("/channels/form")
 	public void form(){}
 	
+	@Get
+	@Path("/channels/edit/{channel.id}")
+	public void form(Channel channel){
+		result.include("channel", service.find(channel.getId()));
+		result.forwardTo(this).form();
+	}
+	
 	@Post
 	@Path("/channels")
 	public void create(Channel channel){
 		service.save(channel);
+		result.redirectTo(this).list();
 	}
 	
 	@Put
-	@Path("/channels/{id}")
-	public void edit(long id){}
+	@Path("/channels")
+	public void edit(Channel channel){
+		service.save(channel);
+		result.redirectTo(this).list();
+	}
 	
 	@Delete
-	@Path("/channels/{id}")
-	public void delete(long id){}
+	@Path("/channels/{channel.id}")
+	public void delete(Channel channel){
+		service.delete(service.find(channel.getId()));
+		result.redirectTo(this).list();
+	}
 }

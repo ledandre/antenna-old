@@ -18,8 +18,8 @@ public class Channel {
 	@Getter @Setter private Long id;
 	
 	@Column(name = "name", length = 30)
-	private String name;
+	@Getter @Setter private String name;
 	
 	@Column(name = "description")
-	private String description;
+	@Getter @Setter private String description;
 }
