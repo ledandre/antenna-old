@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,9 +15,9 @@
 						<img src="${pageContext.request.contextPath}/resources/images/logo-mini.png">
 					</a>
 					<ul class="nav">
-						<li class="active dropdown"><a href="channels">Canais</a></li>
+						<li><a href="channels">Canais</a></li>
 						<li><a href="videos">Vídeos</a></li>
-						<li><a href="users">Usuários</a></li>
+						<li class="active dropdown"><a href="users">Usuários</a></li>
 					</ul>
 				</div>
 			</div>
@@ -31,42 +31,29 @@
 							<div class="span12">
 								<ul class="breadcrumb">
 								  	<li><a href="home">Principal</a> <span class="divider">/</span></li>
-								  	<li class="active">Canais</li>
+								  	<li><a href="channels">Usuários</a> <span class="divider">/</span></li>
+								  	<li class="active">Criar novo</li>
 								</ul>
 							</div>
 						</div>
 						<div class="row">
 							<div class="span12">
-								<button class="btn" onclick="javascript:location.href='channels/form'"><i class="icon-plus"></i> Novo canal</button><br><br>
-								<c:if test="${empty channels}">
-									Nenhum canal cadastrado.
-								</c:if>
-								<c:if test="${not empty channels}">
-									<table class="table table-striped">
-										<thead>
-											<tr>
-												<th>Nome</th>
-												<th>Descrição</th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-										<c:forEach items="${channels}" var="channel">
-										    <tr>
-										    	<td>${channel.name}</td>
-										    	<td>${channel.description}</td>
-										    	<td>
-														<a href="channels/edit/${channel.id}"><i class="icon-pencil"></a></i>
-														<i class="icon-ban-circle"></i>
-													    <a href="#" onclick="javascript:confirmRemove(${channel.id}, '${channel.name}');"><i class="icon-remove"></i></a>
-												</td>
-										</c:forEach>
-										</tbody>
-									</table>
-									<form id="deleteForm" action="" method="POST">
-										<input type="hidden" name="_method" value="DELETE">
-									</form>
-								</c:if>
+								<form id="userForm" class="form" action="${pageContext.request.contextPath}/users" method="post">
+									<input type="hidden" name="user.id" value="${user.id}">
+									<input type="hidden" id="editMethod" name="_method" value="post">
+									<label>Nome do usuário</label>
+									<input type="text" class="input input-block-level" name="user.name" id="name" value="${user.name}"><br>
+									<label>Login</label>
+									<input type="text" class="input input-block-level" name="user.username" id="username" value="${user.username}"><br>
+									<label>Senha</label>
+									<input type="password" class="input input-block-level" name="user.password" id="password" value="${user.password}"><br>
+									<c:if test="${empty channel.id}">
+										<button type="submit" class="btn btn-medium btn-success">Criar</button>
+									</c:if>
+									<c:if test="${not empty channel.id}">
+										<button type="button" onclick="javascript:sendEditForm();" class="btn btn-medium btn-success">Alterar</button>
+									</c:if>
+								</form>
 							</div>
 						</div>
 					</div>

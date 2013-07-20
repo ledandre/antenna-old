@@ -15,9 +15,9 @@
 						<img src="${pageContext.request.contextPath}/resources/images/logo-mini.png">
 					</a>
 					<ul class="nav">
-						<li class="active dropdown"><a href="channels">Canais</a></li>
+						<li><a href="channels">Canais</a></li>
 						<li><a href="videos">Vídeos</a></li>
-						<li><a href="users">Usuários</a></li>
+						<li class="active dropdown"><a href="users">Usuários</a></li>
 					</ul>
 				</div>
 			</div>
@@ -31,34 +31,34 @@
 							<div class="span12">
 								<ul class="breadcrumb">
 								  	<li><a href="home">Principal</a> <span class="divider">/</span></li>
-								  	<li class="active">Canais</li>
+								  	<li class="active">Usuários</li>
 								</ul>
 							</div>
 						</div>
 						<div class="row">
 							<div class="span12">
-								<button class="btn" onclick="javascript:location.href='channels/form'"><i class="icon-plus"></i> Novo canal</button><br><br>
-								<c:if test="${empty channels}">
-									Nenhum canal cadastrado.
+								<button class="btn" onclick="javascript:location.href='users/form'"><i class="icon-plus"></i> Novo usuário</button><br><br>
+								<c:if test="${empty users}">
+									Nenhum usuário cadastrado.
 								</c:if>
-								<c:if test="${not empty channels}">
+								<c:if test="${not empty users}">
 									<table class="table table-striped">
 										<thead>
 											<tr>
 												<th>Nome</th>
-												<th>Descrição</th>
+												<th>Login</th>
 												<th></th>
 											</tr>
 										</thead>
 										<tbody>
-										<c:forEach items="${channels}" var="channel">
+										<c:forEach items="${users}" var="user">
 										    <tr>
-										    	<td>${channel.name}</td>
-										    	<td>${channel.description}</td>
+										    	<td>${user.name}</td>
+										    	<td>${user.username}</td>
 										    	<td>
-														<a href="channels/edit/${channel.id}"><i class="icon-pencil"></a></i>
+														<a href="users/edit/${user.id}"><i class="icon-pencil"></a></i>
 														<i class="icon-ban-circle"></i>
-													    <a href="#" onclick="javascript:confirmRemove(${channel.id}, '${channel.name}');"><i class="icon-remove"></i></a>
+													    <a href="#" onclick="javascript:confirmRemove(${user.id}, '${user.username}');"><i class="icon-remove"></i></a>
 												</td>
 										</c:forEach>
 										</tbody>
@@ -77,6 +77,6 @@
 		<!-- jquery/bootstrap js -->
 		<script src="http://code.jquery.com/jquery.js"></script>
 	    <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-	    <script src="${pageContext.request.contextPath}/resources/js/channel-app.js"></script>
+	    <script src="${pageContext.request.contextPath}/resources/js/users-app.js"></script>
 	</body>
 </html>

@@ -15,22 +15,22 @@
 				</div>
 			
 				<div class="span3 offset6 content">
-					<form class="form-signin">
+					<form class="form-signin" method="post" action="">
 						<div class="input-prepend">
 							<span class="add-on">
 								<i class="icon-user"></i>
 							</span>
-							<input type="text" autofocus required maxlength="12" class="input input-block-level">
+							<input name="user.username" type="text" autofocus required maxlength="12" class="input input-block-level">
 						</div>
 						<br>
 						<div class="input-prepend">
 							<span class="add-on">
 								<i class="icon-lock"></i>
 							</span>
-							<input type="password" required maxlength="8" class="input input-block-level">
+							<input name="user.password" type="password" required maxlength="8" class="input input-block-level">
 						</div>
 						<br>
-						<button type="button" class="btn btn-success">Entrar</button>
+						<button type="submit" class="btn btn-success">Entrar</button>
 					</form>
 				</div>
 			</div>
