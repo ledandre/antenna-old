@@ -23,11 +23,15 @@ public class Config {
 		}
 	}
 	
-	public static String getApplicationName() throws FileNotFoundException, IOException {
+	public static String getApplicationName() {
 		return loadConfig().getProperty("application.name");
 	}
 	
-	public static String getApplicationVersion() throws FileNotFoundException, IOException {
+	public static String getApplicationVersion() {
 		return loadConfig().getProperty("application.version");
+	}
+	
+	public static String getLoginErrorMessage() {
+		return loadConfig().getProperty("antenna.login.error.message");
 	}
 }

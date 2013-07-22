@@ -9,7 +9,7 @@ import br.com.ledtom.antenna.model.security.User;
 public interface UserRepository {
 	public User find(Long id) throws ResourceNotFoundException;
 	
-	public User validateLogin(String username, String password) throws InvalidLoginDataException;
+	public User validateLogin(String username, String password);
 	
 	public List<User> list();
 	

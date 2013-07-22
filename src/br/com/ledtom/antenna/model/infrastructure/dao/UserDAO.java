@@ -51,16 +51,16 @@ public class UserDAO implements UserRepository {
 		entityManager.getTransaction().commit();
 	}
 	
-	public User validateLogin(String username, String password) throws InvalidLoginDataException {
+	public User validateLogin(String username, String password) {
 		Query authQuery = entityManager.createQuery("SELECT U FROM " + User.class.getSimpleName() + " U " +
 				"WHERE U.username = :username AND U.password = :password");
 		authQuery.setParameter("username", username);
 		authQuery.setParameter("password", password);
 		
 		try {
-			return (User) authQuery.getSingleResult();			
+			return (User) authQuery.getSingleResult();
 		} catch(NoResultException e) {
-			throw new InvalidLoginDataException();
+			return null;
 		}
 	}
 }

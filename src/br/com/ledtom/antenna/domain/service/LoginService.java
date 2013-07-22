@@ -19,7 +19,7 @@ public class LoginService {
 		return repository.find(id);
 	}
 	
-	public User doLogin(String username, String password) throws InvalidLoginDataException {
+	public User doLogin(String username, String password) {
 		User loggedUser = repository.validateLogin(username, Cryptography.codify(password));
 		
 		if (loggedUser != null)

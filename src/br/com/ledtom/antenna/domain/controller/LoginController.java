@@ -1,14 +1,16 @@
 package br.com.ledtom.antenna.domain.controller;
 
 import lombok.AllArgsConstructor;
+import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
+import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.ledtom.antenna.configuration.Config;
 import br.com.ledtom.antenna.core.security.Cryptography;
 import br.com.ledtom.antenna.domain.service.LoginService;
-import br.com.ledtom.antenna.model.security.InvalidLoginDataException;
 import br.com.ledtom.antenna.model.security.User;
 import br.com.ledtom.antenna.sessioncomponents.ApplicationInfo;
 import br.com.ledtom.antenna.sessioncomponents.UserSession;
@@ -28,13 +30,14 @@ public class LoginController {
 	@Post
 	@Path("/")
 	public void login(User user) {
-		try {
-			userSession.setUser(service.doLogin(user.getUsername(), user.getPassword()));
-		} catch (InvalidLoginDataException e) {
-			result.include("error", e.getMessage());
+		userSession.setUser(service.doLogin(user.getUsername(), user.getPassword()));
+
+		if (userSession.getUser() == null) {
+			result.include("error", Config.getLoginErrorMessage());
+			result.forwardTo(this).login();
+		} else {
+			result.redirectTo(ChannelController.class).list();
 		}
-		
-		result.forwardTo(ChannelController.class).list();
 	}
 	
 	@Get
@@ -54,6 +57,13 @@ public class LoginController {
 		user.setPassword(encryptPassword);
 		
 		service.save(user);
+		result.redirectTo(this).list();
+	}
+	
+	@Delete
+	@Path("/users/{user.id}")
+	public void delete(User user) {
+		service.delete(service.find(user.getId()));
 		result.redirectTo(this).list();
 	}
 }
