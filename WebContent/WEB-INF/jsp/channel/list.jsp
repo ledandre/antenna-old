@@ -56,9 +56,8 @@
 										    	<td>${channel.name}</td>
 										    	<td>${channel.description}</td>
 										    	<td>
-														<a href="channels/edit/${channel.id}"><i class="icon-pencil"></a></i>
-														<i class="icon-ban-circle"></i>
-													    <a href="#" onclick="javascript:confirmRemove(${channel.id}, '${channel.name}');"><i class="icon-remove"></i></a>
+													<a href="channels/edit/${channel.id}"><i class="icon-pencil"></a></i>
+												    <a href="#" onclick="javascript:confirmRemove(${channel.id}, '${channel.name}');"><i class="icon-remove"></i></a>
 												</td>
 										</c:forEach>
 										</tbody>

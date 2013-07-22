@@ -56,8 +56,6 @@
 										    	<td>${user.name}</td>
 										    	<td>${user.username}</td>
 										    	<td>
-														<a href="users/edit/${user.id}"><i class="icon-pencil"></a></i>
-														<i class="icon-ban-circle"></i>
 													    <a href="#" onclick="javascript:confirmRemove(${user.id}, '${user.username}');"><i class="icon-remove"></i></a>
 												</td>
 										</c:forEach>
