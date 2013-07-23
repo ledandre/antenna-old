@@ -15,8 +15,8 @@
 						<img src="${pageContext.request.contextPath}/resources/images/logo-mini.png">
 					</a>
 					<ul class="nav">
-						<li class="active dropdown"><a href="${pageContext.request.contextPath}/channels">Canais</a></li>
-						<li><a href="${pageContext.request.contextPath}/videos">Vídeos</a></li>
+						<li><a href="${pageContext.request.contextPath}/channels">Canais</a></li>
+						<li class="active dropdown"><a href="${pageContext.request.contextPath}/videos">Vídeos</a></li>
 					</ul>
 				</div>
 			</div>
@@ -30,24 +30,24 @@
 							<div class="span12">
 								<ul class="breadcrumb">
 								  	<li><a href="${pageContext.request.contextPath}/home">Principal</a> <span class="divider">/</span></li>
-								  	<li><a href="${pageContext.request.contextPath}/channels">Canais</a> <span class="divider">/</span></li>
+								  	<li><a href="${pageContext.request.contextPath}/videos">Vídeos</a> <span class="divider">/</span></li>
 								  	<li class="active">Criar novo</li>
 								</ul>
 							</div>
 						</div>
 						<div class="row">
 							<div class="span12">
-								<form id="channelForm" class="form" action="${pageContext.request.contextPath}/channels" method="post">
-									<input type="hidden" name="channel.id" value="${channel.id}">
+								<form id="videoForm" class="form" action="${pageContext.request.contextPath}/videos" method="post">
+									<input type="hidden" name="video.id" value="${video.id}">
 									<input type="hidden" id="editMethod" name="_method" value="post">
-									<label>Nome do canal</label>
-									<input class="input input-block-level" name="channel.name" id="name" value="${channel.name}"><br>
+									<label>Nome do vídeo</label>
+									<input class="input input-block-level" name="video.name" id="name" value="${video.name}"><br>
 									<label>Descrição:</label>
-									<textarea rows="5" cols="10" class="input-block-level" name="channel.description">${channel.description}</textarea><br>
-									<c:if test="${empty channel.id}">
+									<textarea rows="5" cols="10" class="input-block-level" name="video.description">${video.description}</textarea><br>
+									<c:if test="${empty video.id}">
 										<button type="submit" class="btn btn-medium btn-success">Criar</button>
 									</c:if>
-									<c:if test="${not empty channel.id}">
+									<c:if test="${not empty video.id}">
 										<button type="button" onclick="javascript:sendEditForm();" class="btn btn-medium btn-success">Alterar</button>
 									</c:if>
 								</form>
@@ -61,6 +61,6 @@
 		<!-- jquery/bootstrap js -->
 		<script src="http://code.jquery.com/jquery.js"></script>
 	    <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-	    <script src="${pageContext.request.contextPath}/resources/js/channel-app.js"></script>
+	    <script src="${pageContext.request.contextPath}/resources/js/video-app.js"></script>
 	</body>
 </html>
