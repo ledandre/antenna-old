@@ -9,7 +9,8 @@ Versões e funcionalidades
 ####v0.2.0
 - Login
 - Segurança (restrição de acesso).
-
+- Canais
+- Vídeos
 
 Time
 ----
