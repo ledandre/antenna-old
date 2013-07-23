@@ -1,6 +1,15 @@
 package br.com.ledtom.antenna.domain.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Calendar;
+
 import lombok.AllArgsConstructor;
+
+import org.apache.commons.io.IOUtils;
+
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
@@ -8,6 +17,8 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+import br.com.ledtom.antenna.configuration.Config;
 import br.com.ledtom.antenna.domain.service.VideoService;
 import br.com.ledtom.antenna.model.entity.Video;
 import br.com.ledtom.antenna.model.security.Restricted;
@@ -39,7 +50,19 @@ public class VideoController {
 	
 	@Post @Restricted
 	@Path("/videos")
-	public void create(Video video){
+	public void create(Video video, UploadedFile file){
+		StringBuilder absoluteFilePath = new StringBuilder();
+		absoluteFilePath.append(Config.getVideoRepositoryPath()).append(File.pathSeparatorChar).append(file.getFileName());
+		try {
+			IOUtils.copyLarge(file.getFile(), new FileOutputStream(new File(absoluteFilePath.toString())));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		service.save(video);
 		result.redirectTo(this).list();
 	}

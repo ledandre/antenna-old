@@ -19,18 +19,20 @@ function upload(uploadURI) {
  	var request = XMLHttpRequest();
  	request.upload.addEventListener("progress", uploadProgress, false);
  
-	//envia o form
 	var formData = new FormData();
 	formData.append("file", document.getElementById('file').files[0]);
+	formData.append("video.id", $("#id").val());
+	formData.append("video.name", $("#name").val());
+	formData.append("video.description", $("#description").val());
 	request.open("POST", uploadURI);
 	request.send(formData);
 }
 
 function uploadProgress(event) {
   if (event.lengthComputable) {
-    var percent = Math.round(event.loaded * 100 / event.total); //cálculo simples de porcentagem.
-    document.getElementById('progressbar').value = percent; //atualiza o valor da progress bar.
+    var percent = Math.round(event.loaded * 100 / event.total);
+    document.getElementById('progressbar').value = percent;
   } else {
-    //não é possível computar o progresso =/
+   //TODO adicionar tratamento de erro. 
   }
 }

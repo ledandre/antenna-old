@@ -37,20 +37,24 @@
 						</div>
 						<div class="row">
 							<div class="span12">
-								<form id="videoForm" class="form" action="${pageContext.request.contextPath}/videos" method="post">
-									<input type="hidden" name="video.id" value="${video.id}">
-									<input type="hidden" id="editMethod" name="_method" value="post">
-									<label>Nome do vídeo</label>
-									<input class="input input-block-level" name="video.name" id="name" value="${video.name}"><br>
-									<label>Descrição:</label>
-									<textarea rows="5" cols="10" class="input-block-level" name="video.description">${video.description}</textarea><br>
-									<c:if test="${empty video.id}">
-										<button type="submit" class="btn btn-medium btn-success">Criar</button>
-									</c:if>
-									<c:if test="${not empty video.id}">
-										<button type="button" onclick="javascript:sendEditForm();" class="btn btn-medium btn-success">Alterar</button>
-									</c:if>
-								</form>
+								<div id="videoFormDiv">
+									<form id="videoForm" class="form" enctype="multipart/form-data" action="" method="post">
+										<input type="hidden" id="id" name="video.id" value="${video.id}">
+										<input type="hidden" id="editMethod" name="_method" value="post">
+										<label>Nome do vídeo</label>
+										<input class="input input-block-level" name="video.name" id="name" value="${video.name}"><br>
+										<label>Arquivo do vídeo</label>
+										<input id="videoFile" type="file" name="file" <c:if test="${not empty video.id}">required</c:if>>
+										<label>Descrição:</label>
+										<textarea id="description" rows="5" cols="10" class="input-block-level" name="video.description">${video.description}</textarea><br>
+										<c:if test="${empty video.id}">
+											<button type="button" onclick="javascript:upload('${pageContext.request.contextPath}/videos')" class="btn btn-medium btn-success">Criar</button>
+										</c:if>
+										<c:if test="${not empty video.id}">
+											<button type="button" onclick="javascript:sendEditForm();" class="btn btn-medium btn-success">Alterar</button>
+										</c:if>
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -17,8 +17,11 @@ public class Video {
 	@Column(name = "id", nullable = false)
 	@Getter @Setter private Long id;
 	
-	@Column(name = "name", nullable = false)
+	@Column(name = "name", nullable = false, length = 100)
 	@Getter @Setter private String name;
+	
+	@Column(name = "file", nullable = false, length = 100)
+	@Getter @Setter private String file;
 	
 	@Column(name = "description", nullable = true)
 	@Getter @Setter private String description;

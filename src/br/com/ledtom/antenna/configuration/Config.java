@@ -34,4 +34,8 @@ public class Config {
 	public static String getLoginErrorMessage() {
 		return loadConfig().getProperty("antenna.login.error.message");
 	}
+	
+	public static String getVideoRepositoryPath() {
+		return loadConfig().getProperty("antenna.videos.repository");
+	}
 }
