@@ -37,21 +37,25 @@
 						</div>
 						<div class="row">
 							<div class="span12">
+								<div class="progress progress-striped active" style="display: none">
+									<div id="progressbar" class="bar" style="width: 0%;"></div>
+								</div>
 								<div id="videoFormDiv">
-									<form id="videoForm" class="form" enctype="multipart/form-data" action="" method="post">
+									<form id="videoForm" action="${pageContext.request.contextPath}/videos" method="post" enctype="multipart/form-data">
 										<input type="hidden" id="id" name="video.id" value="${video.id}">
-										<input type="hidden" id="editMethod" name="_method" value="post">
+										<input type="hidden" id="file" name="video.file" value="${video.file}">
 										<label>Nome do vídeo</label>
 										<input class="input input-block-level" name="video.name" id="name" value="${video.name}"><br>
 										<label>Arquivo do vídeo</label>
-										<input id="videoFile" type="file" name="file" <c:if test="${not empty video.id}">required</c:if>>
+										<c:if test="${not empty video.id}"><small><strong>${video.file}</strong> - para substituir este arquivo, selecione um novo.</small></c:if><br>
+										<input id="videoFile" type="file" name="videoFile" <c:if test="${empty video.id}">required</c:if>>
 										<label>Descrição:</label>
 										<textarea id="description" rows="5" cols="10" class="input-block-level" name="video.description">${video.description}</textarea><br>
 										<c:if test="${empty video.id}">
-											<button type="button" onclick="javascript:upload('${pageContext.request.contextPath}/videos')" class="btn btn-medium btn-success">Criar</button>
+											<button type="submit" class="btn btn-medium btn-success">Criar</button>
 										</c:if>
 										<c:if test="${not empty video.id}">
-											<button type="button" onclick="javascript:sendEditForm();" class="btn btn-medium btn-success">Alterar</button>
+											<button type="submit" class="btn btn-medium btn-success">Alterar</button>
 										</c:if>
 									</form>
 								</div>

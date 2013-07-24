@@ -1,14 +1,6 @@
 package br.com.ledtom.antenna.domain.controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Calendar;
-
 import lombok.AllArgsConstructor;
-
-import org.apache.commons.io.IOUtils;
 
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
@@ -18,7 +10,6 @@ import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
-import br.com.ledtom.antenna.configuration.Config;
 import br.com.ledtom.antenna.domain.service.VideoService;
 import br.com.ledtom.antenna.model.entity.Video;
 import br.com.ledtom.antenna.model.security.Restricted;
@@ -43,40 +34,28 @@ public class VideoController {
 	
 	@Get @Restricted
 	@Path("/videos/edit/{video.id}")
-	public void form(Video video){
+	public void form(Video video) {
 		result.include("video", service.find(video.getId()));
 		result.forwardTo(this).form();
 	}
 	
 	@Post @Restricted
 	@Path("/videos")
-	public void create(Video video, UploadedFile file){
-		StringBuilder absoluteFilePath = new StringBuilder();
-		absoluteFilePath.append(Config.getVideoRepositoryPath()).append(File.pathSeparatorChar).append(file.getFileName());
-		try {
-			IOUtils.copyLarge(file.getFile(), new FileOutputStream(new File(absoluteFilePath.toString())));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void create(Video video, UploadedFile videoFile) {
+		if (videoFile != null) {
+			service.deleteOldVideo(video.getId());
+			service.upload(videoFile);
+			video.setFile(videoFile.getFileName());
 		}
-		
+
 		service.save(video);
 		result.redirectTo(this).list();
 	}
-	
-	@Put @Restricted
-	@Path("/videos")
-	public void edit(Video video){
-		service.save(video);
-		result.redirectTo(this).list();
-	}
-	
+
 	@Delete @Restricted
 	@Path("/videos/{video.id}")
-	public void delete(Video video){
+	public void delete(Video video) {
+		service.deleteOldVideo(video.getId());
 		service.delete(service.find(video.getId()));
 		result.redirectTo(this).list();
 	}

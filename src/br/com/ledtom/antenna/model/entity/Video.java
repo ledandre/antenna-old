@@ -14,7 +14,7 @@ import lombok.Setter;
 @Table(name = "videos")
 public class Video {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", nullable = false)
+	@Column(name = "id")
 	@Getter @Setter private Long id;
 	
 	@Column(name = "name", nullable = false, length = 100)

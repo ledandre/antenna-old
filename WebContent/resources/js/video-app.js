@@ -1,10 +1,11 @@
 function sendEditForm() {
-	$("#editMethod").attr("value", "put");
+	var action = $("#videoForm").attr("action");
+	$("#videoForm").attr("action", action + "/edit");
 	$("#videoForm").submit();
 }
 
 function confirmRemove(videoId, videoName) {
-	var confirmed = confirm("Tem certeza que deseja excluir o vï¿½deo " + videoName + "?");
+	var confirmed = confirm("Tem certeza que deseja excluir o vídeo " + videoName + "?");
 	
 	if (confirmed) {
 		$("#deleteForm").attr("action", "videos/" + videoId);
@@ -31,7 +32,7 @@ function upload(uploadURI) {
 function uploadProgress(event) {
   if (event.lengthComputable) {
     var percent = Math.round(event.loaded * 100 / event.total);
-    document.getElementById('progressbar').value = percent;
+    $("#progressbar").css("width", percent + "%");
   } else {
    //TODO adicionar tratamento de erro. 
   }
