@@ -1,5 +1,4 @@
 
-
 @Entity
 @Table(name = "schedules")
 @AllArgsConstructor
