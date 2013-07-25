@@ -6,9 +6,9 @@ Sistema de gerenciamento de mídia digital. Foi construído na linguagem java, u
 Versões e funcionalidades
 -------------------------
 
-####v0.2.0
+####v0.3.0
 - Login
-- Segurança (restrição de acesso).
+- Segurança (Login, Logout e restrição de acesso).
 - Canais
 - Vídeos
 
