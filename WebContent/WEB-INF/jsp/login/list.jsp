@@ -15,9 +15,8 @@
 						<img src="${pageContext.request.contextPath}/resources/images/logo-mini.png">
 					</a>
 					<ul class="nav">
-						<li><a href="channels">Canais</a></li>
-						<li><a href="videos">Vídeos</a></li>
-						<li class="active dropdown"><a href="users">Usuários</a></li>
+						<li><a href="${pageContext.request.contextPath}/channels">Canais</a></li>
+						<li><a href="${pageContext.request.contextPath}/videos">Vídeos</a></li>
 					</ul>
 				</div>
 			</div>
@@ -37,7 +36,7 @@
 						</div>
 						<div class="row">
 							<div class="span12">
-								<button class="btn" onclick="javascript:location.href='users/form'"><i class="icon-plus"></i> Novo usuário</button><br><br>
+								<button class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/users/form/${secretKey}'"><i class="icon-plus"></i> Novo usuário</button><br><br>
 								<c:if test="${empty users}">
 									Nenhum usuário cadastrado.
 								</c:if>

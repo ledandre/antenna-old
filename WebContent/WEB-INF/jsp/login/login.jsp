@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,8 +14,13 @@
 				<div class="span3 offset6">
 					<img src="${pageContext.request.contextPath}/resources/images/logo.png">
 				</div>
-			
 				<div class="span3 offset6 content">
+					<c:if test="${not empty error}">
+						<div class="alert alert-error">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>Falha na autenticação</strong> ${error}
+						</div>
+					</c:if>
 					<form class="form-signin" method="post" action="">
 						<div class="input-prepend">
 							<span class="add-on">

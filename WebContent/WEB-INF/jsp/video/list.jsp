@@ -15,9 +15,9 @@
 						<img src="${pageContext.request.contextPath}/resources/images/logo-mini.png">
 					</a>
 					<ul class="nav">
-						<li><a href="channels">Canais</a></li>
-						<li class="active dropdown"><a href="videos">Vídeos</a></li>
-						<li><a href="users">Usuários</a></li>
+						<li><a href="${pageContext.request.contextPath}/channels">Canais</a></li>
+						<li class="active dropdown"><a href="${pageContext.request.contextPath}/videos">Vídeos</a></li>
+						<li><a href="${pageContext.request.contextPath}/logout">Sair</a></li>
 					</ul>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 						</div>
 						<div class="row">
 							<div class="span12">
-								<button class="btn" onclick="javascript:location.href='videos/form'"><i class="icon-plus"></i> Novo vídeo</button><br><br>
+								<button class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/videos/form'"><i class="icon-plus"></i> Novo vídeo</button><br><br>
 								<c:if test="${empty videos}">
 									Nenhum vídeo cadastrado.
 								</c:if>
@@ -56,7 +56,7 @@
 										    	<td>${video.name}</td>
 										    	<td>${video.description}</td>
 										    	<td>
-													<a href="videos/edit/${video.id}"><i class="icon-pencil"></a></i>
+													<a href="${pageContext.request.contextPath}/videos/edit/${video.id}"><i class="icon-pencil"></a></i>
 												    <a href="#" onclick="javascript:confirmRemove(${video.id}, '${video.name}');"><i class="icon-remove"></i></a>
 												</td>
 										</c:forEach>

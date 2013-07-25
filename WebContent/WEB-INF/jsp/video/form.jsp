@@ -17,6 +17,7 @@
 					<ul class="nav">
 						<li><a href="${pageContext.request.contextPath}/channels">Canais</a></li>
 						<li class="active dropdown"><a href="${pageContext.request.contextPath}/videos">Vídeos</a></li>
+						<li><a href="${pageContext.request.contextPath}/logout">Sair</a></li>
 					</ul>
 				</div>
 			</div>

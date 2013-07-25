@@ -7,7 +7,6 @@ import br.com.caelum.vraptor.core.InterceptorStack;
 import br.com.caelum.vraptor.interceptor.Interceptor;
 import br.com.caelum.vraptor.resource.ResourceMethod;
 import br.com.ledtom.antenna.domain.controller.LoginController;
-import br.com.ledtom.antenna.model.security.Restricted;
 import br.com.ledtom.antenna.sessioncomponents.UserSession;
 
 @Intercepts

@@ -19,13 +19,20 @@ import br.com.ledtom.antenna.sessioncomponents.UserSession;
 @AllArgsConstructor
 public class LoginController {
 	private final Result result;
-	private final ApplicationInfo appInfo;
+	private final ApplicationInfo applicationInfo;
 	private final LoginService service;
-	private final UserSession userSession;
+	private UserSession userSession;
 	
 	@Get
 	@Path("/")
 	public void login() {}
+	
+	@Get
+	@Path("/logout")
+	public void logout() {
+		userSession.logout();
+		result.redirectTo(this).login();
+	}
 	
 	@Post
 	@Path("/")
@@ -41,14 +48,19 @@ public class LoginController {
 	}
 	
 	@Get
-	@Path("/users")
-	public void list() {
+	@Path("/users/{secretKey}")
+	public void list(String secretKey) {
+		if (!secretKey.equals("Girafales")) throw new IllegalAccessError("You don't have permission to access this resource");
+		
+		result.include("secretKey", secretKey);
 		result.include("users", service.list());
 	}
 	
 	@Get
-	@Path("/users/form")
-	public void form() {}
+	@Path("/users/form/{secretKey}")
+	public void form(String secretKey) {
+		if (!secretKey.equals("Girafales")) throw new IllegalAccessError("You don't have permission to access this resource");
+	}
 	
 	@Post
 	@Path("/users")
@@ -57,13 +69,13 @@ public class LoginController {
 		user.setPassword(encryptPassword);
 		
 		service.save(user);
-		result.redirectTo(this).list();
+		result.redirectTo(this).list("Girafales");
 	}
 	
 	@Delete
 	@Path("/users/{user.id}")
 	public void delete(User user) {
 		service.delete(service.find(user.getId()));
-		result.redirectTo(this).list();
+		result.redirectTo(this).list("Girafales");
 	}
 }

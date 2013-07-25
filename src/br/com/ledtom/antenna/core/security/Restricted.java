@@ -1,4 +1,4 @@
-package br.com.ledtom.antenna.model.security;
+package br.com.ledtom.antenna.core.security;
 
 /**
  * @author Leandro Andre

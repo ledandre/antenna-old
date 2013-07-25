@@ -15,9 +15,9 @@
 						<img src="${pageContext.request.contextPath}/resources/images/logo-mini.png">
 					</a>
 					<ul class="nav">
-						<li class="active dropdown"><a href="channels">Canais</a></li>
-						<li><a href="videos">Vídeos</a></li>
-						<li><a href="users">Usuários</a></li>
+						<li class="active dropdown"><a href="${pageContext.request.contextPath}/channels">Canais</a></li>
+						<li><a href="${pageContext.request.contextPath}/videos">Vídeos</a></li>
+						<li><a href="${pageContext.request.contextPath}/logout">Sair</a></li>
 					</ul>
 				</div>
 			</div>
@@ -37,7 +37,7 @@
 						</div>
 						<div class="row">
 							<div class="span12">
-								<button class="btn" onclick="javascript:location.href='channels/form'"><i class="icon-plus"></i> Novo canal</button><br><br>
+								<button class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/channels/form'"><i class="icon-plus"></i> Novo canal</button><br><br>
 								<c:if test="${empty channels}">
 									Nenhum canal cadastrado.
 								</c:if>
@@ -56,7 +56,7 @@
 										    	<td>${channel.name}</td>
 										    	<td>${channel.description}</td>
 										    	<td>
-													<a href="channels/edit/${channel.id}"><i class="icon-pencil"></a></i>
+													<a href="${pageContext.request.contextPath}/channels/edit/${channel.id}"><i class="icon-pencil"></a></i>
 												    <a href="#" onclick="javascript:confirmRemove(${channel.id}, '${channel.name}');"><i class="icon-remove"></i></a>
 												</td>
 										</c:forEach>

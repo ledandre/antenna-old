@@ -8,9 +8,9 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.ledtom.antenna.core.security.Restricted;
 import br.com.ledtom.antenna.domain.service.ChannelService;
 import br.com.ledtom.antenna.model.entity.Channel;
-import br.com.ledtom.antenna.model.security.Restricted;
 import br.com.ledtom.antenna.sessioncomponents.ApplicationInfo;
 
 @Resource

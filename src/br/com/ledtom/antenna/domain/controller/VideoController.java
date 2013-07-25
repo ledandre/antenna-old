@@ -1,18 +1,16 @@
 package br.com.ledtom.antenna.domain.controller;
 
 import lombok.AllArgsConstructor;
-
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
-import br.com.caelum.vraptor.Put;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
+import br.com.ledtom.antenna.core.security.Restricted;
 import br.com.ledtom.antenna.domain.service.VideoService;
 import br.com.ledtom.antenna.model.entity.Video;
-import br.com.ledtom.antenna.model.security.Restricted;
 import br.com.ledtom.antenna.sessioncomponents.ApplicationInfo;
 
 @Resource
