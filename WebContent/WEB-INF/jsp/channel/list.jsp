@@ -56,8 +56,9 @@
 										    	<td>${channel.name}</td>
 										    	<td>${channel.description}</td>
 										    	<td>
-													<a href="${pageContext.request.contextPath}/channels/edit/${channel.id}"><i class="icon-pencil"></a></i>
-												    <a href="#" onclick="javascript:confirmRemove(${channel.id}, '${channel.name}');"><i class="icon-remove"></i></a>
+													<a class="options-link" data-toggle="tooltip" title="Editar" data-original-title="Editar" href="${pageContext.request.contextPath}/channels/edit/${channel.id}"><i class="icon-pencil"></a></i>
+													<a class="options-link" data-toggle="tooltip" title="Gerenciar programação" data-original-title="Gerenciar programação" href="${pageContext.request.contextPath}/schedules/${channel.id}"><i class="icon-film"></i></a>
+												    <a class="options-link" data-toggle="tooltip" title="Remover" data-original-title="Remover" href="#" onclick="javascript:confirmRemove(${channel.id}, '${channel.name}');"><i class="icon-remove"></i></a>
 												</td>
 										</c:forEach>
 										</tbody>

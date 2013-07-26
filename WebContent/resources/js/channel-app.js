@@ -1,3 +1,5 @@
+$('.options-link').tooltip();
+
 function sendEditForm() {
 	$("#editMethod").attr("value", "put");
 	$("#channelForm").submit();
