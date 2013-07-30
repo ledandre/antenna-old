@@ -21,9 +21,11 @@ public class ScheduleController {
 	private final ApplicationInfo applicationInfo;
 	
 	@Get @Restricted
-	@Path("/schedules")
-	public void list(){
-		result.include("schedules", service.list());
+	@Path("/schedules/{channelId}")
+	public void list(Long channelId) {
+		result.include("schedules", service.list(channelId));
+		result.include("channel", service.getChannel(channelId));
+		result.forwardTo(this).form();
 	}
 	
 	@Get @Restricted
@@ -32,29 +34,33 @@ public class ScheduleController {
 	
 	@Get @Restricted
 	@Path("/schedules/edit/{schedule.id}")
-	public void form(Schedule schedule){
-		result.include("schedule", service.find(schedule.getId()));
+	public void form(Schedule schedule) {
+		schedule = service.find(schedule.getId());
+		result.include("schedule", schedule);
+		result.include("channel", schedule.getChannel());
 		result.forwardTo(this).form();
 	}
 	
 	@Post @Restricted
 	@Path("/schedules")
-	public void create(Schedule schedule){
+	public void create(Schedule schedule) {
 		service.save(schedule);
-		result.redirectTo(this).list();
+		result.redirectTo(this).list(schedule.getChannel().getId());
 	}
 	
 	@Put @Restricted
 	@Path("/schedules")
-	public void edit(Schedule schedule){
+	public void edit(Schedule schedule) {
 		service.save(schedule);
-		result.redirectTo(this).list();
+		result.redirectTo(this).list(schedule.getChannel().getId());
 	}
 	
 	@Delete @Restricted
 	@Path("/schedules/{schedule.id}")
-	public void delete(Schedule schedule){
-		service.delete(service.find(schedule.getId()));
-		result.redirectTo(this).list();
+	public void delete(Schedule schedule) {
+		schedule = service.find(schedule.getId());
+		long channelId = schedule.getChannel().getId();
+		service.delete(schedule);
+		result.redirectTo(this).list(channelId);
 	}
 }

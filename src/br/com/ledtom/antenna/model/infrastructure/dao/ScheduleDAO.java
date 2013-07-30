@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import br.com.caelum.vraptor.http.route.ResourceNotFoundException;
+import br.com.ledtom.antenna.model.entity.Channel;
 import br.com.ledtom.antenna.model.entity.Schedule;
 import br.com.ledtom.antenna.model.infrastructure.ScheduleRepository;
 
@@ -26,6 +27,15 @@ public class ScheduleDAO implements ScheduleRepository {
 	
 	public List<Schedule> list() {
 		Query query = entityManager.createQuery("SELECT C FROM " + Schedule.class.getSimpleName() + " C");
+		List<Schedule> schedules = query.getResultList();
+
+		return schedules;
+	}
+	
+	public List<Schedule> list(Channel channel) {
+		Query query = entityManager.createQuery("SELECT C FROM " + Schedule.class.getSimpleName() + " C WHERE C.channel = :channel");
+		query.setParameter("channel", channel);
+
 		List<Schedule> schedules = query.getResultList();
 
 		return schedules;

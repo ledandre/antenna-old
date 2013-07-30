@@ -32,26 +32,16 @@
 								<ul class="breadcrumb">
 								  	<li><a href="${pageContext.request.contextPath}/home">Principal</a> <span class="divider">/</span></li>
 								  	<li><a href="${pageContext.request.contextPath}/channels">Canais</a> <span class="divider">/</span></li>
-								  	<li class="active">Criar novo</li>
+								  	<li class="active">Programação</li>
 								</ul>
 							</div>
 						</div>
 						<div class="row">
 							<div class="span12">
-								<form id="channelForm" class="form" action="${pageContext.request.contextPath}/channels" method="post">
-									<input type="hidden" name="channel.id" value="${channel.id}">
-									<input type="hidden" id="editMethod" name="_method" value="post">
-									<label>Nome do canal</label>
-									<input class="input input-block-level" name="channel.name" id="name" value="${channel.name}"><br>
-									<label>Descrição:</label>
-									<textarea rows="5" cols="10" class="input-block-level" name="channel.description">${channel.description}</textarea><br>
-									<c:if test="${empty channel.id}">
-										<button type="submit" class="btn btn-medium btn-success">Criar</button>
-									</c:if>
-									<c:if test="${not empty channel.id}">
-										<button type="button" onclick="javascript:sendEditForm();" class="btn btn-medium btn-success">Alterar</button>
-									</c:if>
-								</form>
+								<h3>Programação do canal ${channel.name}</h3>
+								<c:if test="${empty schedules}">
+									A programação deste canal ainda não foi criada
+								</c:if>
 							</div>
 						</div>
 					</div>
