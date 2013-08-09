@@ -38,4 +38,8 @@ public class Config {
 	public static String getVideoRepositoryPath() {
 		return loadConfig().getProperty("antenna.videos.repository");
 	}
+	
+	public static int getVideoSizeLimit() {
+		return Integer.parseInt(loadConfig().getProperty("antenna.videos.sizeLimit"));
+	}
 }

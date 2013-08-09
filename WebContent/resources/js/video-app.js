@@ -37,3 +37,15 @@ function uploadProgress(event) {
    //TODO adicionar tratamento de erro. 
   }
 }
+
+
+function updateChannelSchedule() {
+	$('#periods').html('<img src="resources/img/ajax-loader.gif">');
+	$.ajax({
+		type: "GET",
+		url: "period",
+		cache: false
+	}).done(function( html ) {
+		$('#periods').html(html);
+	});
+}

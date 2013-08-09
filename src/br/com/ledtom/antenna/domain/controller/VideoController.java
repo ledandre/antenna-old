@@ -40,7 +40,16 @@ public class VideoController {
 	@Post @Restricted
 	@Path("/videos")
 	public void create(Video video, UploadedFile videoFile) {
-		if (videoFile != null) {
+		service.upload(videoFile);
+		video.setFile(videoFile.getFileName());
+		service.save(video);
+		result.redirectTo(this).list();
+	}
+	
+	@Post @Restricted
+	@Path("/videos/edit")
+	public void edit(Video video, UploadedFile videoFile) {
+		if (video.getId() != null && videoFile != null) {
 			service.deleteOldVideo(video.getId());
 			service.upload(videoFile);
 			video.setFile(videoFile.getFileName());
@@ -48,7 +57,7 @@ public class VideoController {
 
 		service.save(video);
 		result.redirectTo(this).list();
-	}
+	}	
 
 	@Delete @Restricted
 	@Path("/videos/{video.id}")

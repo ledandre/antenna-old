@@ -28,7 +28,7 @@ public class Schedule {
 	@Column(name = "period")
 	@Getter @Setter private int period;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "channel")
 	@Getter @Setter private Channel channel;
 	

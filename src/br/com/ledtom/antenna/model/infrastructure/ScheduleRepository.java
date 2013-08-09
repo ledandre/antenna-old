@@ -16,4 +16,6 @@ public interface ScheduleRepository {
 	public Schedule save(Schedule schedule);
 	
 	public void delete(Schedule schedule);
+	
+	public void removeVideoLists(Schedule schedule);
 }

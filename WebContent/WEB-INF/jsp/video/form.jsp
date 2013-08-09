@@ -47,8 +47,7 @@
 										<input type="hidden" id="file" name="video.file" value="${video.file}">
 										<label>Nome do vídeo</label>
 										<input class="input input-block-level" name="video.name" id="name" value="${video.name}"><br>
-										<label>Arquivo do vídeo</label>
-										<c:if test="${not empty video.id}"><small><strong>${video.file}</strong> - para substituir este arquivo, selecione um novo.</small></c:if><br>
+										<label>Arquivo do vídeo <c:if test="${not empty video.id}"><small>[<strong> ${video.file}</strong> - para substituir este arquivo, selecione um novo.]</small></c:if></label>
 										<input id="videoFile" type="file" name="videoFile" <c:if test="${empty video.id}">required</c:if>>
 										<label>Descrição:</label>
 										<textarea id="description" rows="5" cols="10" class="input-block-level" name="video.description">${video.description}</textarea><br>
@@ -56,7 +55,7 @@
 											<button type="submit" class="btn btn-medium btn-success">Criar</button>
 										</c:if>
 										<c:if test="${not empty video.id}">
-											<button type="submit" class="btn btn-medium btn-success">Alterar</button>
+											<button type="button" onclick="javascript:sendEditForm();" class="btn btn-medium btn-success">Alterar</button>
 										</c:if>
 									</form>
 								</div>

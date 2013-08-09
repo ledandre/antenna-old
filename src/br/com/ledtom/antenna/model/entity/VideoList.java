@@ -21,4 +21,7 @@ public class VideoList {
 	
 	@JoinColumn(name = "video")
 	@Getter @Setter private Video video;
+	
+	@Column(name = "position")
+	@Getter @Setter private int position;
 }

@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import br.com.caelum.vraptor.http.route.ResourceNotFoundException;
 import br.com.ledtom.antenna.model.entity.Channel;
 import br.com.ledtom.antenna.model.entity.Schedule;
+import br.com.ledtom.antenna.model.entity.VideoList;
 import br.com.ledtom.antenna.model.infrastructure.ScheduleRepository;
 
 public class ScheduleDAO implements ScheduleRepository {
@@ -25,6 +26,7 @@ public class ScheduleDAO implements ScheduleRepository {
 		return entityManager.find(Schedule.class, id);
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Schedule> list() {
 		Query query = entityManager.createQuery("SELECT C FROM " + Schedule.class.getSimpleName() + " C");
 		List<Schedule> schedules = query.getResultList();
@@ -32,6 +34,7 @@ public class ScheduleDAO implements ScheduleRepository {
 		return schedules;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Schedule> list(Channel channel) {
 		Query query = entityManager.createQuery("SELECT C FROM " + Schedule.class.getSimpleName() + " C WHERE C.channel = :channel");
 		query.setParameter("channel", channel);
@@ -59,5 +62,18 @@ public class ScheduleDAO implements ScheduleRepository {
 		entityManager.getTransaction().begin();
 		entityManager.remove(schedule);
 		entityManager.getTransaction().commit();
+	}
+	
+	public void removeVideoLists(Schedule schedule) {
+		entityManager.getTransaction().begin();
+		Query query = entityManager.createNativeQuery("DELETE FROM schedules_videolists WHERE schedule_id = " + schedule.getId());
+		query.executeUpdate();
+		entityManager.getTransaction().commit();
+
+		for (VideoList videoList : schedule.getVideoList()) {
+			entityManager.getTransaction().begin();
+			entityManager.remove(videoList);
+			entityManager.getTransaction().commit();
+		}
 	}
 }
