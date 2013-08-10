@@ -40,9 +40,11 @@ public class ScheduleController {
 	
 	@Post @Restricted
 	@Path("/schedules")
-	public void save(Schedule schedule) {
+	public void save(Schedule schedule, List<String> videosAndPositions) {
 		if (schedule.getId() != null) service.cleanSchedule(schedule.getId());
-
+		
+		if (videosAndPositions != null) schedule.setVideoList(service.prepareSchedule(videosAndPositions));			
+		
 		service.save(schedule);
 		result.redirectTo(this).list(schedule.getChannel().getId());
 	}

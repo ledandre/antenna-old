@@ -66,7 +66,7 @@
 																	<a href="#" class="options-link" data-toggle="tooltip" title="Preview" data-original-title="Preview">
 																		<i class="icon-facetime-video"></i>
 																	</a>
-																	<a href="#" onclick="javascript:addVideo(${video.id}, '${video.name}');" class="options-link" data-toggle="tooltip" title="Adicionar à lista de reprodução" data-original-title="Adicionar à lista de reprodução">
+																	<a href="#" onclick="javascript:addVideo(${video.id}, '${video.name}'); return false;" class="options-link" data-toggle="tooltip" title="Adicionar à lista de reprodução" data-original-title="Adicionar à lista de reprodução">
 																		<i class="icon-plus-sign"></i>
 																	</a>
 																</td>
@@ -85,7 +85,7 @@
 														<c:forEach items="${schedule.videoList}" var="videoList" varStatus="status">
 															<tr id="tr-${status.index}">
 																<td>
-																	<a href="#" onclick="javscript:removeVideo(${status.index})" class="options-link" data-toggle="tooltip" title="Remover da lista de reprodução" data-original-title="Remover da lista de reprodução">
+																	<a href="#" onclick="javscript:removeVideo(${status.index}); return false;" class="options-link" data-toggle="tooltip" title="Remover da lista de reprodução" data-original-title="Remover da lista de reprodução">
 																		<i class="icon-minus-sign"></i>
 																	</a>
 																	<a href="#" class="options-link" data-toggle="tooltip" title="Preview" data-original-title="Preview">
@@ -96,7 +96,7 @@
 																	<strong>${videoList.video.name}</strong>
 																</td>
 															</tr>
-															<input type="hidden" id="vd-${status.index}" name="schedule.videoList.video.id" value="${videoList.video.id}">
+															<input type="hidden" id="vd-${status.index}" name="videosAndPositions[${status.index}]" value="${videoList.video.id}:${status.index}">
 														</c:forEach>
 													</c:if>
 										  			</tbody>
