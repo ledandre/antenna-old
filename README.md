@@ -6,11 +6,14 @@ Sistema de gerenciamento de mídia digital. Foi construído na linguagem java, u
 Versões e funcionalidades
 -------------------------
 
-####v0.3.0
+####v0.3.0beta
 - Login
 - Segurança (Login, Logout e restrição de acesso).
 - Canais
 - Vídeos
+
+####v0.4.0beta
+- Programação (Criação e edição de programação de canais)
 
 Time
 ----
