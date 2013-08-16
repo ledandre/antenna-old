@@ -5,6 +5,7 @@
 		<class>br.com.ledtom.antenna.model.entity.Video</class>
 		<class>br.com.ledtom.antenna.model.entity.VideoList</class>
 		<class>br.com.ledtom.antenna.model.entity.Schedule</class>
+		<class>br.com.ledtom.antenna.model.entity.Machine</class>
 		<class>br.com.ledtom.antenna.model.security.User</class>
 		<properties>
 			<property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
