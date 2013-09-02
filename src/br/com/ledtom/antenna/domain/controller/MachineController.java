@@ -37,11 +37,12 @@ public class MachineController {
 	
 	@Put @Path("/machines/accept/{id}")
 	public void accept(Machine machine) {
-		service.accept(machine);
+		service.accept(service.find(machine.getId()));
+		result.redirectTo(this).list();
 	}
 	
 	@Get @Path("/machines/notify/{hash}")
 	public void notify(String hash) {
-		
+		service.notify(hash);
 	}
 }

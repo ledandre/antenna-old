@@ -26,9 +26,9 @@
 		<div class="container-fluid">
 			<div class="content">
 				<div class="row">
-					<div class="span12">
+					<div class="span12 center">
 						<div class="row">
-							<div class="span12">
+							<div class="span12 center">
 								<ul class="breadcrumb">
 								  	<li><a href="home">Principal</a> <span class="divider">/</span></li>
 								  	<li><a href="channels">Usuários</a> <span class="divider">/</span></li>
@@ -37,7 +37,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="span12">
+							<div class="span12 center">
 								<form id="userForm" class="form" action="${pageContext.request.contextPath}/users" method="post">
 									<input type="hidden" name="user.id" value="${user.id}">
 									<input type="hidden" id="editMethod" name="_method" value="post">

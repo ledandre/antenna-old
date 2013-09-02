@@ -26,9 +26,9 @@
 		<div class="container-fluid">
 			<div class="content">
 				<div class="row">
-					<div class="span12">
+					<div class="span12 center">
 						<div class="row">
-							<div class="span12">
+							<div class="span12 center">
 								<ul class="breadcrumb">
 								  	<li><a href="${pageContext.request.contextPath}/home">Principal</a> <span class="divider">/</span></li>
 								  	<li><a href="${pageContext.request.contextPath}/channels">Canais</a> <span class="divider">/</span></li>
@@ -37,7 +37,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="span12">
+							<div class="span12 center">
 								<h3>Programação do canal ${channel.name}</h3>
 								<c:if test="${empty schedule}">
 									<div class="alert">

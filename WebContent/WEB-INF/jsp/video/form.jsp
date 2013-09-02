@@ -26,9 +26,9 @@
 		<div class="container-fluid">
 			<div class="content">
 				<div class="row">
-					<div class="span12">
+					<div class="span12 center">
 						<div class="row">
-							<div class="span12">
+							<div class="span12 center">
 								<ul class="breadcrumb">
 								  	<li><a href="${pageContext.request.contextPath}/home">Principal</a> <span class="divider">/</span></li>
 								  	<li><a href="${pageContext.request.contextPath}/videos">Vídeos</a> <span class="divider">/</span></li>
@@ -37,7 +37,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="span12">
+							<div class="span12 center">
 								<div class="progress progress-striped active" style="display: none">
 									<div id="progressbar" class="bar" style="width: 0%;"></div>
 								</div>

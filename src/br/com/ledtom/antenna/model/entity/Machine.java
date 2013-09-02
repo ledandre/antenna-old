@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,6 +18,7 @@ import lombok.Setter;
 import br.com.ledtom.antenna.model.enums.MachineStatus;
 
 @Entity
+@Table(name = "machines")
 public class Machine {
 	
 	public Machine(){}

@@ -27,9 +27,9 @@
 		<div class="container-fluid">
 			<div class="content">
 				<div class="row">
-					<div class="span12">
+					<div class="span12 center">
 						<div class="row">
-							<div class="span12">
+							<div class="span12 center">
 								<ul class="breadcrumb">
 								  	<li><a href="home">Principal</a> <span class="divider">/</span></li>
 								  	<li class="active">Máquinas</li>
@@ -37,7 +37,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="span12">
+							<div class="span12 center">
 								<c:if test="${empty machines}">
 									Nenhuma máquina cadastrada.
 								</c:if>
@@ -58,8 +58,8 @@
 										    	<td>${machine.hash}</td>
 										    	<td>${machine.status}</td>
 										    	<td>
-													<a href="${pageContext.request.contextPath}/videos/edit/${video.id}"><i class="icon-pencil"></a></i>
-												    <a href="#" onclick="javascript:confirmRemove(${video.id}, '${video.name}');"><i class="icon-remove"></i></a>
+													<a href="#" onclick="javascript:acceptMachine(${machine.id}, '${pageContext.request.contextPath}/machines/accept')"><i class="icon-ok-circle"></a></i>
+												    <a href="#" onclick="javascript:confirmRemove(${machine.id}, '${machine.name}');"><i class="icon-remove-circle"></i></a>
 												</td>
 										</c:forEach>
 										</tbody>
@@ -78,6 +78,6 @@
 		<!-- jquery/bootstrap js -->
 		<script src="http://code.jquery.com/jquery.js"></script>
 	    <script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
-	    <script src="${pageContext.request.contextPath}/resources/js/machine-app.js"></script>
+	    <script src="${pageContext.request.contextPath}/resources/js/machines-app.js"></script>
 	</body>
 </html>

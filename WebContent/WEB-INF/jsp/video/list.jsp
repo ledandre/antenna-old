@@ -17,6 +17,7 @@
 					<ul class="nav">
 						<li><a href="${pageContext.request.contextPath}/channels">Canais</a></li>
 						<li class="active dropdown"><a href="${pageContext.request.contextPath}/videos">Vídeos</a></li>
+						<li><a href="${pageContext.request.contextPath}/machines">Máquinas</a></li>
 						<li><a href="${pageContext.request.contextPath}/logout">Sair</a></li>
 					</ul>
 				</div>
@@ -26,9 +27,9 @@
 		<div class="container-fluid">
 			<div class="content">
 				<div class="row">
-					<div class="span12">
+					<div class="span12 center">
 						<div class="row">
-							<div class="span12">
+							<div class="span12 center">
 								<ul class="breadcrumb">
 								  	<li><a href="home">Principal</a> <span class="divider">/</span></li>
 								  	<li class="active">Vídeos</li>
@@ -36,7 +37,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<div class="span12">
+							<div class="span12 center">
 								<button class="btn" onclick="javascript:location.href='${pageContext.request.contextPath}/videos/form'"><i class="icon-plus"></i> Novo vídeo</button><br><br>
 								<c:if test="${empty videos}">
 									Nenhum vídeo cadastrado.

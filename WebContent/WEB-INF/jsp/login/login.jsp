@@ -11,10 +11,10 @@
 		<div class="container-fluid">
 			<br><br>
 			<div class="row">
-				<div class="span3 offset6">
+				<div class="span3 center">
 					<img src="${pageContext.request.contextPath}/resources/images/logo.png">
 				</div>
-				<div class="span3 offset6 content">
+				<div class="span3 center content">
 					<c:if test="${not empty error}">
 						<div class="alert alert-error">
 							<button type="button" class="close" data-dismiss="alert">&times;</button>
