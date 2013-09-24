@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,10 +39,10 @@ public class Machine {
 	@Column(name = "id")
 	@Getter @Setter private Long id;
 
-	@Column(name = "name")
+	@Column(name = "name", unique = true)
 	@Getter @Setter private String name;
 
-	@Column(name = "hash")
+	@Column(name = "hash", unique = true)
 	@Getter @Setter private String hash;
 
 	@Column(name = "status")
@@ -48,6 +50,10 @@ public class Machine {
 	@Getter @Setter private MachineStatus status;
 	
 	@Column(name = "last_updated")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Getter @Setter private Date lastUpdated;
+	
+	@JoinColumn(name = "channel", nullable = true)
+	@OneToOne
+	@Getter @Setter private Channel channel;
 }

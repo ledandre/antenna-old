@@ -7,8 +7,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.eclipse.persistence.internal.jpa.EntityManagerFactoryProvider;
-
 import br.com.caelum.vraptor.http.route.ResourceNotFoundException;
 import br.com.ledtom.antenna.model.entity.Channel;
 import br.com.ledtom.antenna.model.infrastructure.ChannelRepository;

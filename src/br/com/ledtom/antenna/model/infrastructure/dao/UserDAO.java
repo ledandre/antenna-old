@@ -10,7 +10,6 @@ import javax.persistence.Query;
 
 import br.com.caelum.vraptor.http.route.ResourceNotFoundException;
 import br.com.ledtom.antenna.model.infrastructure.UserRepository;
-import br.com.ledtom.antenna.model.security.InvalidLoginDataException;
 import br.com.ledtom.antenna.model.security.User;
 
 public class UserDAO implements UserRepository {

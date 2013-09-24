@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -46,8 +47,9 @@
 										<thead>
 											<tr>
 												<th>Nome</th>
-												<th>Hash</th>
+												<th>Conectado no canal</th>
 												<th>Status</th>
+												<th>Última sincronização</th>
 												<th></th>
 											</tr>
 										</thead>
@@ -55,11 +57,22 @@
 										<c:forEach items="${machines}" var="machine">
 										    <tr>
 										    	<td>${machine.name}</td>
-										    	<td>${machine.hash}</td>
+										    	<td>${machine.channel.name}</td>
 										    	<td>${machine.status}</td>
+										    	<td><fmt:formatDate value="${machine.lastUpdated}" pattern="dd/MM/yyyy HH:mm:ss" /></td>
 										    	<td>
-													<a href="#" onclick="javascript:acceptMachine(${machine.id}, '${pageContext.request.contextPath}/machines/accept')"><i class="icon-ok-circle"></a></i>
-												    <a href="#" onclick="javascript:confirmRemove(${machine.id}, '${machine.name}');"><i class="icon-remove-circle"></i></a>
+													<div class="btn-group">
+														<a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+															Comandos
+														  	<span class="caret"></span>
+														</a>
+														<ul class="dropdown-menu">
+															<li><a href="#changeChannelModal" onclick = "javascript:setMachineId(${machine.id})" role="button" data-toggle="modal">Alterar Canal</a></li>
+														</ul>
+													</div>
+													<!-- 
+												    <button class="btn btn-danger"><i class="icon-remove-circle"></i> Bloquear Máquina</button>
+													 -->
 												</td>
 										</c:forEach>
 										</tbody>
@@ -73,6 +86,29 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		
+		<!-- change channel command modal -->
+		<div id="changeChannelModal" class="modal hide fade">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		    <h3>Alterar canal</h3>
+		  </div>
+		  <div class="modal-body">
+	    	<form id = "changeChannelForm" method = "post" action = "${pageContext.request.contextPath}/machines/setChannel">
+	    		<select id = "channelId" name = "channel.id">
+	    			<c:forEach items = "${channels}" var = "ch">
+	    				<option value = "${ch.id}">${ch.name }</option>
+	    			</c:forEach>
+	    		</select>
+	    		<input id = "machineId" type = "hidden" name = "machine.id">
+	    		<input type = "hidden" name = "_method" value = "put">
+	    	</form>
+		  </div>
+		  <div class="modal-footer">
+		    <a href="#" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancelar</a>
+		    <a href="#" onclick="javascript:changeChannel()" class="btn btn-primary">Confirmar</a>
+		  </div>
 		</div>
 		
 		<!-- jquery/bootstrap js -->

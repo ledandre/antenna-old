@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
@@ -25,7 +26,7 @@ public class MachineDAO implements MachineRepository{
 		return entityManager.find(Machine.class, id);
 	}
 	
-	public Machine findByHash(String hash) {
+	public Machine findByHash(String hash) throws NoResultException {
 		Query query = entityManager.createQuery("SELECT M FROM " + Machine.class.getSimpleName() + 
 				" M WHERE M.hash = :hash");
 		query.setParameter("hash", hash);
@@ -35,7 +36,9 @@ public class MachineDAO implements MachineRepository{
 	
 	@SuppressWarnings("unchecked")
 	public List<Machine> list() {
-		Query query = entityManager.createQuery("SELECT M FROM " + Machine.class.getSimpleName() + " M");
+		Query query = entityManager.createQuery("SELECT M FROM " + Machine.class.getSimpleName() + 
+				" M WHERE M.status != :status");
+		query.setParameter("status", MachineStatus.PENDING);
 		List<Machine> channels = query.getResultList();
 
 		return channels;

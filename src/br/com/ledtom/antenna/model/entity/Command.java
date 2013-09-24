@@ -1,28 +1,52 @@
+package br.com.ledtom.antenna.model.entity;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import lombok.Getter;
+import lombok.Setter;
+import br.com.ledtom.antenna.model.enums.CommandStatus;
+import br.com.ledtom.antenna.model.enums.MachineCommand;
 
 @Entity
-@Table(name = "command")
-public final class Command {
+@Table(name = "commands")
+public class Command {
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	@Getter @Setter private Long id;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "command", nullable = false)
+	@Getter @Setter private MachineCommand command;
+	
+	@Column(name = "argument", nullable = true)
+	@Getter @Setter private String argument;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "requested", nullable = false)
+	@Getter @Setter private Date requested;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "executed", nullable = false)
+	@Getter @Setter private Date executed;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status", nullable = true)
+	@Getter @Setter private CommandStatus status;
 
-  @Enumerated(EnumType.STRING)
-  @Column(name = "command", nullable = false)
-  @Getter @Setter private final MachineCommand command;
-  
-  @Column(name = "argument", nullable = true)
-  @Getter @Setter private final String argument;
-  
-  @Temporal(TemporalType.TIMESTAMP, nullable = false)
-  @Column(name = "requested", nullable = false)
-  @Getter @Setter private final Date requested;
-
-  @Temporal(TemporalType.TIMESTAMP, nullable = true)
-  @Getter @Setter private Date executed;
-
-  @Enumerated(EnumType.STRING)
-  @Column(name = "status", nullable = true)
-  @Getter @Setter private CommandStatus status;
-  
-  @JoinColumn(name = "machine", nullable = false)
-  @OneToOne
-  @Getter @Setter private final Machine machine;
-
+	@ManyToOne
+	@JoinColumn(name = "machine")
+	@Getter @Setter private Machine machine;
 }

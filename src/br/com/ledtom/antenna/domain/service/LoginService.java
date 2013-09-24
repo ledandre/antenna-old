@@ -5,7 +5,6 @@ import java.util.List;
 import br.com.ledtom.antenna.core.security.Cryptography;
 import br.com.ledtom.antenna.model.infrastructure.UserRepository;
 import br.com.ledtom.antenna.model.infrastructure.dao.UserDAO;
-import br.com.ledtom.antenna.model.security.InvalidLoginDataException;
 import br.com.ledtom.antenna.model.security.User;
 
 public class LoginService {

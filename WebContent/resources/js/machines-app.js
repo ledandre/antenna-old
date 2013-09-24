@@ -22,3 +22,27 @@ function confirmRemove(machineId, machineName) {
 		return;
 	}
 }
+
+function setMachineId(machineId) {
+	$('#machineId').val(machineId);
+}
+
+function changeChannel() {
+	//alert($('#changeChannelForm').attr('action'));
+	//$.ajax({
+//		type: "POST",
+//		url: $('#changeChannelForm').attr('action'),
+//		cache: false,
+//		data: {
+//			'_method' : 'PUT',
+//			'machine.id' : $('#machineId'),
+//			'channel.id' : $('#channelId')
+//		}
+//	}).done(function( html ){
+//		alert(html);
+//	});
+	var action = $('#changeChannelForm').attr('action') + "/" + $('#machineId').val() + "/" + $('#channelId').val();
+	$('#changeChannelForm').attr('action',action);
+	
+	$('#changeChannelForm').submit();
+}
