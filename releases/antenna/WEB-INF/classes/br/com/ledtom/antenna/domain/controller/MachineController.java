@@ -93,6 +93,7 @@ public class MachineController {
 	@Put @Path("/machines/setChannel/{machine}/{channel}")
 	public void setChannel(Machine machine, Channel channel) {
 		service.setChannel(service.find(machine.getId()), channelService.find(channel.getId()));
+		//TODO create change channel command.
 		result.redirectTo(this).list();
 	}
 
