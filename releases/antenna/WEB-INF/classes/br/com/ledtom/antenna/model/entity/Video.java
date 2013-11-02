@@ -12,7 +12,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "videos")
-public class Video {
+public class Video implements Comparable<Video> {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	@Getter @Setter private Long id;
@@ -25,4 +25,12 @@ public class Video {
 	
 	@Column(name = "description", nullable = true)
 	@Getter @Setter private String description;
+
+	public int compareTo(Video otherVideo) {
+		if (otherVideo.getName().equals(this.getName())) { 
+			return 0;
+		}
+		
+		return -1;
+	}
 }

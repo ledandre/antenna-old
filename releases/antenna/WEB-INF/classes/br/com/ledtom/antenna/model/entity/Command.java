@@ -39,7 +39,7 @@ public class Command {
 	@Getter @Setter private Date requested;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "executed", nullable = false)
+	@Column(name = "executed", nullable = true)
 	@Getter @Setter private Date executed;
 	
 	@Enumerated(EnumType.STRING)

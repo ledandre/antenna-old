@@ -8,19 +8,24 @@ import java.util.List;
 import javax.persistence.NoResultException;
 
 import br.com.ledtom.antenna.model.entity.Channel;
+import br.com.ledtom.antenna.model.entity.Command;
 import br.com.ledtom.antenna.model.entity.Machine;
 import br.com.ledtom.antenna.model.entity.Schedule;
 import br.com.ledtom.antenna.model.entity.Video;
 import br.com.ledtom.antenna.model.entity.VideoList;
 import br.com.ledtom.antenna.model.enums.MachineStatus;
+import br.com.ledtom.antenna.model.infrastructure.CommandRepository;
 import br.com.ledtom.antenna.model.infrastructure.MachineRepository;
+import br.com.ledtom.antenna.model.infrastructure.dao.CommandDAO;
 import br.com.ledtom.antenna.model.infrastructure.dao.MachineDAO;
 
 public class MachineService {
 	private MachineRepository repository;
+	private CommandRepository commandRepository;
 
 	public MachineService() {
 		repository = new MachineDAO();
+		commandRepository = new CommandDAO();
 	}
 
 	public Machine find(long id){
@@ -93,4 +98,12 @@ public class MachineService {
 
 		return videos;
 	}
+	
+	public List<Command> getCommands(String hash) {
+		Machine machine = repository.findByHash(hash);
+		
+		return commandRepository.listPendingByMachine(machine);
+	}
+	
+	
 }

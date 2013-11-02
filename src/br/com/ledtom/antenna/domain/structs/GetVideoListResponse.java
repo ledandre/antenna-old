@@ -1,6 +1,8 @@
 package br.com.ledtom.antenna.domain.structs;
 
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import br.com.ledtom.antenna.model.entity.Video;
 
@@ -11,7 +13,7 @@ public final class GetVideoListResponse {
 		this.videos = videos;
 	}
 
-	public List<Video> getVideos() {
-		return videos;
+	public Set<Video> getVideos() {
+		return new TreeSet<Video>(videos);
 	}
 }
