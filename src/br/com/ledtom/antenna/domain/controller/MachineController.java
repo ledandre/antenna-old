@@ -108,7 +108,7 @@ public class MachineController {
 	public void getSchedule(String hash) {
 		GetVideoListResponse response = new GetVideoListResponse(service.getVideoList(hash));
 		System.out.println("im on the getschedule > " + response.getVideos().toString());
-		result.use(Results.json()).withoutRoot().from(response).include("videos").exclude("id").exclude("name").exclude("description").serialize();
+		result.use(Results.json()).withoutRoot().from(response).include("videos").serialize();
 	}
 	
 	@Get @Path("/machines/getCommandQueue/{hash}")
