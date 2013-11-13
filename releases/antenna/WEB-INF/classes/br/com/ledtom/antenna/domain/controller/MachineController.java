@@ -125,6 +125,8 @@ public class MachineController {
 		if (command != null) {
 			commandService.markAsExecuting(command);
 			result.use(Results.json()).withoutRoot().from(command).exclude("status").exclude("requested").serialize();
+		} else {
+			result.use(Results.http()).body("{}");			
 		}
 	}
 

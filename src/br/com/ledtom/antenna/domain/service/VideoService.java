@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.ledtom.antenna.configuration.Config;
@@ -39,7 +40,7 @@ private VideoRepository repository;
 	
 	public void upload(UploadedFile videoFile) {
 		StringBuilder absoluteFilePath = new StringBuilder();
-		absoluteFilePath.append(Config.getVideoRepositoryPath()).append(videoFile.getFileName());
+		absoluteFilePath.append(Config.getVideoRepositoryPath()).append(StringUtils.stripAccents(videoFile.getFileName()));
 		try {
 			IOUtils.copyLarge(videoFile.getFile(), new FileOutputStream(new File(absoluteFilePath.toString())));
 			videoFile.getFile().close();

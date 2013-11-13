@@ -1,5 +1,7 @@
 package br.com.ledtom.antenna.domain.controller;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.AllArgsConstructor;
 import br.com.caelum.vraptor.Delete;
 import br.com.caelum.vraptor.Get;
@@ -41,7 +43,7 @@ public class VideoController {
 	@Path("/videos")
 	public void create(Video video, UploadedFile videoFile) {
 		service.upload(videoFile);
-		video.setFile(videoFile.getFileName());
+		video.setFile(StringUtils.stripAccents(videoFile.getFileName()));
 		service.save(video);
 		result.redirectTo(this).list();
 	}
