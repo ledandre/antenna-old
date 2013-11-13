@@ -7,13 +7,18 @@ Versões e funcionalidades
 -------------------------
 
 ####v0.3.0beta
-- Login
-- Segurança (Login, Logout e restrição de acesso).
-- Canais
-- Vídeos
+- Login;
+- Segurança (Login, Logout e restrição de acesso);
+- Canais;
+- Vídeos.
 
 ####v0.4.0beta
-- Programação (Criação e edição de programação de canais)
+- Programação (Criação e edição de programação de canais).
+
+####v0.5.1beta
+- Agendamento de comandos;
+- Não permite acentos no nome do vídeo e nem no nome do arquivo .mp4.
+
 
 Time
 ----
