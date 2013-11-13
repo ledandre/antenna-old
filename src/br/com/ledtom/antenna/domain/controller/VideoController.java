@@ -44,6 +44,7 @@ public class VideoController {
 	public void create(Video video, UploadedFile videoFile) {
 		service.upload(videoFile);
 		video.setFile(StringUtils.stripAccents(videoFile.getFileName()));
+		video.setName(StringUtils.stripAccents(video.getName()));
 		service.save(video);
 		result.redirectTo(this).list();
 	}
