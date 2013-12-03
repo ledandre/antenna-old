@@ -49,3 +49,18 @@ function updateChannelSchedule() {
 		$('#periods').html(html);
 	});
 }
+
+function removeAcento(strToReplace) {
+	var str_acento= "באדגהיטךכםלמןףעץפצתשûüחְֱֲֳִָֹÊֻּֽ־ֿ׃ׂױײװÚÙÛÜַ";
+	var str_sem_acento = "aaaaaeeeeiiiiooooouuuucAAAAAEEEEIIIIOOOOOUUUUC";
+	var nova="";
+	
+	for (var i = 0; i < strToReplace.length; i++) {
+		if (str_acento.indexOf(strToReplace.charAt(i)) != -1) {
+			nova+=str_sem_acento.substr(str_acento.search(strToReplace.substr(i,1)),1);
+		} else {
+			nova+=strToReplace.substr(i,1);
+		}
+	}
+	return nova;
+}

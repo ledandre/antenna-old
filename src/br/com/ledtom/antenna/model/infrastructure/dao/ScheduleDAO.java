@@ -65,8 +65,10 @@ public class ScheduleDAO implements ScheduleRepository {
 	}
 	
 	public void removeVideoLists(Schedule schedule) {
+		String tableName = new StringBuilder().append(Schedule.class.getSimpleName()).append("_").append(VideoList.class.getSimpleName()).toString();
+
 		entityManager.getTransaction().begin();
-		Query query = entityManager.createNativeQuery("DELETE FROM schedules_videolists WHERE schedule_id = " + schedule.getId());
+		Query query = entityManager.createNativeQuery("DELETE FROM " + tableName + " WHERE schedule_id = " + schedule.getId());
 		query.executeUpdate();
 		entityManager.getTransaction().commit();
 
