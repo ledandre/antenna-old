@@ -41,7 +41,7 @@
 						<div class="row">
 							<div class="span12 center">
 								<c:if test="${empty pending}">
-									Nenhuma nova máquina.
+									Nenhuma nova máquina.<br><br>
 								</c:if>
 								<c:if test="${not empty pending}">
 									<table class="table table-striped">
@@ -58,7 +58,7 @@
 										    <tr>
 										    	<td>${pending.name}</td>
 										    	<td>${pending.hash}</td>
-										    	<td>${pending.status}</td>
+										    	<td>${pending.statusDescription}</td>
 										    	<td>
 													<a href="#" onclick="javascript:acceptMachine(${machine.id}, '${pageContext.request.contextPath}/machines/accept')"><i class="icon-ok-circle"></a></i>
 												    <a href="#" onclick="javascript:confirmRemove(${machine.id}, '${machine.name}');"><i class="icon-remove-circle"></i></a>
@@ -105,7 +105,7 @@
 										    <tr>
 										    	<td>${machine.name}</td>
 										    	<td>${machine.channel.name}</td>
-										    	<td>${machine.status}</td>
+										    	<td>${machine.statusDescription}</td>
 										    	<td><fmt:formatDate value="${machine.lastUpdated}" pattern="dd/MM/yyyy HH:mm:ss" /></td>
 										    	<td>
 													<div class="btn-group">

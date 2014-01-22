@@ -17,6 +17,7 @@ import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.Setter;
+import br.com.ledtom.antenna.configuration.Config;
 import br.com.ledtom.antenna.model.enums.MachineStatus;
 
 @Entity
@@ -56,4 +57,31 @@ public class Machine {
 	@JoinColumn(name = "channel", nullable = true)
 	@OneToOne
 	@Getter @Setter private Channel channel;
+	
+	public String getStatusDescription() {
+		if (this.status.equals(MachineStatus.INEXISTENT)) {
+			return Config.getMachineStatusInexistentDescription();
+			
+		} else if (this.status.equals(MachineStatus.ACCEPTED)) {
+			return Config.getMachineStatusAceptedDescription();
+		
+		} else if (this.status.equals(MachineStatus.OFF)) {
+			return Config.getMachineStatusOffDescription();
+		
+		} else if (this.status.equals(MachineStatus.PENDING)) {
+			return Config.getMachineStatusPendingDescription();
+		
+		} else if (this.status.equals(MachineStatus.SYNCHRONIZED)) {
+			return Config.getMachineStatusSynchronizedDescription();
+		
+		} else if (this.status.equals(MachineStatus.UNSYNCHRONIZED)) {
+			return Config.getMachineStatusUnsynchronizedDescription();
+		
+		} else if (this.status.equals(MachineStatus.UPDATING)) {
+			return Config.getMachineStatusUpdatingDescription();
+		
+		} else {
+			return Config.getMachineStatusUnknownDescription();
+		}
+	}
 }

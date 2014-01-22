@@ -42,4 +42,36 @@ public class Config {
 	public static int getVideoSizeLimit() {
 		return Integer.parseInt(loadConfig().getProperty("antenna.videos.sizeLimit"));
 	}
+	
+	public static String getMachineStatusInexistentDescription() {
+		return loadConfig().getProperty("antenna.machines.status.description.inexistent");
+	}
+	
+	public static String getMachineStatusPendingDescription() {
+		return loadConfig().getProperty("antenna.machines.status.description.pending");
+	}
+
+	public static String getMachineStatusAceptedDescription() {
+		return loadConfig().getProperty("antenna.machines.status.description.acepted");
+	}
+	
+	public static String getMachineStatusSynchronizedDescription() {
+		return loadConfig().getProperty("antenna.machines.status.description.synchronized");
+	}
+	
+	public static String getMachineStatusOffDescription() {
+		return loadConfig().getProperty("antenna.machines.status.description.off");
+	}
+	
+	public static String getMachineStatusUpdatingDescription() {
+		return loadConfig().getProperty("antenna.machines.status.description.updating");
+	}
+	
+	public static String getMachineStatusUnsynchronizedDescription() {
+		return loadConfig().getProperty("antenna.machines.status.description.unsynchronized");
+	}
+	
+	public static String getMachineStatusUnknownDescription() {
+		return loadConfig().getProperty("antenna.machines.status.description.unknown");
+	}
 }

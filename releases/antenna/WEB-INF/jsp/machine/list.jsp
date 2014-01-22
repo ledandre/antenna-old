@@ -33,7 +33,7 @@
 							<div class="span12 center">
 								<ul class="breadcrumb">
 								  	<li><a href="home">Principal</a> <span class="divider">/</span></li>
-								  	<li class="active">Máquinas</li>
+								  	<li class="active">Máquinas novas (pendentes)</li>
 								</ul>
 							</div>
 						</div>
@@ -58,7 +58,7 @@
 										    <tr>
 										    	<td>${pending.name}</td>
 										    	<td>${pending.hash}</td>
-										    	<td>${pending.status}</td>
+										    	<td>${pending.statusDescription}</td>
 										    	<td>
 													<a href="#" onclick="javascript:acceptMachine(${machine.id}, '${pageContext.request.contextPath}/machines/accept')"><i class="icon-ok-circle"></a></i>
 												    <a href="#" onclick="javascript:confirmRemove(${machine.id}, '${machine.name}');"><i class="icon-remove-circle"></i></a>
@@ -73,6 +73,15 @@
 							</div>
 						</div>
 						<!-- /pending machines -->
+						
+						<div class="row">
+							<div class="span12 center">
+								<ul class="breadcrumb">
+								  	<li><a href="home">Principal</a> <span class="divider">/</span></li>
+								  	<li class="active">Máquinas cadastradas</li>
+								</ul>
+							</div>
+						</div>
 						
 						<!-- accepted machines -->
 						<div class="row">
@@ -96,7 +105,7 @@
 										    <tr>
 										    	<td>${machine.name}</td>
 										    	<td>${machine.channel.name}</td>
-										    	<td>${machine.status}</td>
+										    	<td>${machine.statusDescription}</td>
 										    	<td><fmt:formatDate value="${machine.lastUpdated}" pattern="dd/MM/yyyy HH:mm:ss" /></td>
 										    	<td>
 													<div class="btn-group">
