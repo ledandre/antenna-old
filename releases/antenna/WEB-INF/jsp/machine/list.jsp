@@ -37,6 +37,44 @@
 								</ul>
 							</div>
 						</div>
+						<!-- pending machines -->
+						<div class="row">
+							<div class="span12 center">
+								<c:if test="${empty pending}">
+									Nenhuma nova máquina.
+								</c:if>
+								<c:if test="${not empty pending}">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Nome</th>
+												<th>Hash</th>
+												<th>Status</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+										<c:forEach items="${pending}" var="machine">
+										    <tr>
+										    	<td>${pending.name}</td>
+										    	<td>${pending.hash}</td>
+										    	<td>${pending.status}</td>
+										    	<td>
+													<a href="#" onclick="javascript:acceptMachine(${machine.id}, '${pageContext.request.contextPath}/machines/accept')"><i class="icon-ok-circle"></a></i>
+												    <a href="#" onclick="javascript:confirmRemove(${machine.id}, '${machine.name}');"><i class="icon-remove-circle"></i></a>
+												</td>
+										</c:forEach>
+										</tbody>
+									</table>
+									<form id="deleteForm" action="" method="POST">
+										<input type="hidden" name="_method" value="DELETE">
+									</form>
+								</c:if>
+							</div>
+						</div>
+						<!-- /pending machines -->
+						
+						<!-- accepted machines -->
 						<div class="row">
 							<div class="span12 center">
 								<c:if test="${empty machines}">
@@ -83,6 +121,7 @@
 								</c:if>
 							</div>
 						</div>
+						<!-- /accepted machines -->
 					</div>
 				</div>
 			</div>

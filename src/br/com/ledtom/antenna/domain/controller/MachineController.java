@@ -43,6 +43,7 @@ public class MachineController {
 	public void list() {
 		result.include("channels", channelService.list());
 		result.include("machines", service.list());
+		result.include("pending", service.listPending());
 	}
 	
 	@Restricted
