@@ -8,7 +8,9 @@ function acceptMachine(machineId, action) {
 			'_method' : 'PUT',
 			'machine.id' : machineId
 		}
-	}).done(function( html ){});
+	}).done(function( html ){
+		location.reload();
+	});
 }
 
 function confirmRemove(machineId, machineName) {
