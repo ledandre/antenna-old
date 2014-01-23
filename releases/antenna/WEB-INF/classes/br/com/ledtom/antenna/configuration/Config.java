@@ -6,9 +6,9 @@ import java.util.Properties;
 
 public class Config {
 	private static final String PROPERTIES_FILE = "antenna.properties";
-	
+
 	public Config() {}
-	
+
 	public static Properties loadConfig(){		
 		try {
 			Properties config = new Properties();
@@ -22,7 +22,7 @@ public class Config {
 			return null;
 		}
 	}
-	
+
 	public static String getApplicationName() {
 		return loadConfig().getProperty("application.name");
 	}
@@ -73,5 +73,13 @@ public class Config {
 	
 	public static String getMachineStatusUnknownDescription() {
 		return loadConfig().getProperty("antenna.machines.status.description.unknown");
+	}
+	
+	public static int getMachineMaxSyncTime() {
+		return Integer.parseInt(loadConfig().getProperty("antenna.synchronizer.machine.sync.max.time"));
+	}
+	
+	public static int getMachineCheckSyncTime() {
+		return Integer.parseInt(loadConfig().getProperty("antenna.synchronizer.machine.check.time.interval"));
 	}
 }

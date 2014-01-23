@@ -1,13 +1,11 @@
 package br.com.ledtom.antenna.core.periodic;
 
-import java.util.Iterator;
-import java.util.List;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
-import lombok.AllArgsConstructor;
-import br.com.caelum.vraptor.ioc.ApplicationScoped;
-import br.com.ledtom.antenna.core.annotations.Periodic;
-import br.com.ledtom.antenna.domain.service.MachineService;
-import br.com.ledtom.antenna.model.entity.Machine;
+import br.com.ledtom.antenna.configuration.Config;
+import br.com.ledtom.antenna.domain.periodic.Scheduler;
+import br.com.ledtom.antenna.domain.periodic.Synchronizer;
 
 /**
  * This class makes periodic checks to verify if all machines are synchronized.
@@ -15,19 +13,13 @@ import br.com.ledtom.antenna.model.entity.Machine;
  * @author Leandro Andre
  *
  */
-@ApplicationScoped
-@AllArgsConstructor
-public class MachineChecker {
-	private final MachineService service;
-
-	@Periodic
-	public void checkAllMachines() {
-		List<Machine> machines = service.list();
-		
-		Iterator<Machine> iterator = machines.iterator();
-		
-		while (iterator.hasNext()) {
-			//TODO create a warning object
-		}
+public class MachineChecker implements ServletContextListener {
+	public void contextInitialized(ServletContextEvent event) {
+		Scheduler scheduler = new Scheduler();
+		scheduler.scheduleTask(Synchronizer.getInstance(), Config.getMachineCheckSyncTime() * 60 * 1000);
+	}
+	
+	public void contextDestroyed(ServletContextEvent event) {
+		//TODO do nothing ? =p
 	}
 }

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta http-equiv="refresh" content="300">
 		<title>${applicationInfo.name} - ${applicationInfo.version}</title>
 		<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 		<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" media="screen">
@@ -56,9 +57,9 @@
 										<tbody>
 										<c:forEach items="${pending}" var="machine">
 										    <tr>
-										    	<td>${pending.name}</td>
-										    	<td>${pending.hash}</td>
-										    	<td>${pending.statusDescription}</td>
+										    	<td>${machine.name}</td>
+										    	<td>${machine.hash}</td>
+										    	<td>${machine.statusDescription}</td>
 										    	<td>
 													<a href="#" onclick="javascript:acceptMachine(${machine.id}, '${pageContext.request.contextPath}/machines/accept')"><i class="icon-ok-circle"></a></i>
 												    <a href="#" onclick="javascript:confirmRemove(${machine.id}, '${machine.name}');"><i class="icon-remove-circle"></i></a>
