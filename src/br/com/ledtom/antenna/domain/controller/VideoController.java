@@ -69,4 +69,14 @@ public class VideoController {
 		service.delete(service.find(video.getId()));
 		result.redirectTo(this).list();
 	}
+
+	@Get
+	@Path("/videos/{id}")
+	public Download downloadVideo(Long id) {
+		File video = new File(Config.getVideoRepositoryPath());
+		//InputStream stream = [...];
+    		String contentType = "video/mp4";
+
+    		return new InputStreamDownload(stream, contentType, filename);
+	}
 }
