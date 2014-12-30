@@ -3,6 +3,7 @@ package br.com.ledtom.antenna.domain.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.commons.lang3.StringUtils;
@@ -14,6 +15,7 @@ import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.interceptor.download.Download;
+import br.com.caelum.vraptor.interceptor.download.FileDownload;
 import br.com.caelum.vraptor.interceptor.download.InputStreamDownload;
 import br.com.caelum.vraptor.interceptor.multipart.UploadedFile;
 import br.com.ledtom.antenna.configuration.Config;
@@ -90,17 +92,8 @@ public class VideoController {
     public Download downloadVideo(Long id) {
         Video video = service.find(id);
         File videoFile = new File(Config.getVideoRepositoryPath() + video.getFile());
-        InputStream stream;
         String contentType = "video/mp4";
 
-        try {
-            stream = new FileInputStream(videoFile);
-            return new InputStreamDownload(stream, contentType, video.getFile());
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return null;
+        return new FileDownload(videoFile, contentType, video.getFile());
     }
 }
