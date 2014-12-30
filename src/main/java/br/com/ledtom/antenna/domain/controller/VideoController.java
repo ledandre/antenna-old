@@ -89,7 +89,7 @@ public class VideoController {
     @Path("/videos/{id}")
     public Download downloadVideo(Long id) {
         Video video = service.find(id);
-        File videoFile = new File(Config.getVideoRepositoryPath() + video.getId());
+        File videoFile = new File(Config.getVideoRepositoryPath() + video.getFile());
         InputStream stream;
         String contentType = "video/mp4";
 
