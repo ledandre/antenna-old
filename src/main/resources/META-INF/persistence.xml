@@ -11,7 +11,7 @@
 		<properties>
 			<property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://mysql.tvdc.com.br/tvdc13"/> 
-			<!-- <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/antenna"/> -->
+			<!-- <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/antenna"/>-->
 			<property name="javax.persistence.jdbc.user" value="tvdc13"/>
 			<property name="javax.persistence.jdbc.password" value="4ntenna"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
