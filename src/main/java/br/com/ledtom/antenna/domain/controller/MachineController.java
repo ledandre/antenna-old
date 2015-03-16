@@ -1,5 +1,6 @@
 package br.com.ledtom.antenna.domain.controller;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 import javax.persistence.NoResultException;
@@ -25,6 +26,8 @@ import br.com.ledtom.antenna.model.entity.Machine;
 import br.com.ledtom.antenna.model.enums.MachineCommand;
 import br.com.ledtom.antenna.model.enums.MachineStatus;
 import br.com.ledtom.antenna.sessioncomponents.ApplicationInfo;
+import br.com.orangescript.antenna.news.core.Source;
+import br.com.orangescript.antenna.news.core.publisher.PublisherService;
 
 @Resource
 public class MachineController {
@@ -32,6 +35,7 @@ public class MachineController {
     private final MachineService service;
     private final ChannelService channelService;
     private final CommandService commandService;
+    private final PublisherService publisherService;
 
     @SuppressWarnings("unused")
     private ApplicationInfo appInfo;
@@ -41,12 +45,14 @@ public class MachineController {
             MachineService service,
             ChannelService channelService,
             CommandService commandService,
+            PublisherService publisherService,
             ApplicationInfo appInfo) {
 
         this.result = result;
         this.service = service;
         this.channelService = channelService;
         this.commandService = commandService;
+        this.publisherService = publisherService;
         this.appInfo = appInfo;
     }
 
@@ -123,13 +129,13 @@ public class MachineController {
         System.out.println("im on the getschedule > " + response.getVideos().toString());
         result.use(Results.json()).withoutRoot().from(response).include("videos").serialize();
     }
-    
+
     @Get @Path("/machines/getCommandQueue/{hash}")
     public void getCommandQueue(String hash) {
         GetCommandsResponse response = new GetCommandsResponse(service.getCommands(hash));
         result.use(Results.json()).withoutRoot().from(response).include("commands").serialize();
     }
-    
+
     @Get @Path("/machines/getNextCommand/{hash}")
     public void getNextCommand(String hash) {
         GetCommandsResponse response = new GetCommandsResponse(service.getCommands(hash));
@@ -139,12 +145,21 @@ public class MachineController {
             commandService.markAsExecuting(command);
             result.use(Results.json()).withoutRoot().from(command).exclude("status").exclude("requested").serialize();
         } else {
-            result.use(Results.http()).body("{}");            
+            result.use(Results.http()).body("{}");
         }
     }
 
     @Get @Path("/machines/notifyCommandExecution/{commandId}")
     public void commandExecutedNotify(long commandId) {
         result.forwardTo(CommandController.class).commandExecutedNotify(commandId);
+    }
+
+    @Get @Path("/machines/getNews/{hash}")
+    public void getNews(String hash) {
+        try {
+			result.use(Results.json()).from(publisherService.getNews(Arrays.asList(Source.UOL))).serialize();
+		} catch (Exception e) {
+			result.use(Results.http()).body("{}");
+		}
     }
 }

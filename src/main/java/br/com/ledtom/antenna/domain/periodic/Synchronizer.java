@@ -46,11 +46,13 @@ public class Synchronizer extends TimerTask {
             machineService.save(machine);
         }
     }
-    
+
     private boolean outOfSync(Date lastSync) {
+        if (lastSync == null) return true;
+
         Date now = Calendar.getInstance().getTime();
         long diff = now.getTime() - lastSync.getTime();
-        
+
         return ((diff / 1000 / 60) >= Config.getMachineMaxSyncTime());
     }
 
