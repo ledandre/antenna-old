@@ -23,6 +23,7 @@ import br.com.ledtom.antenna.domain.structs.RequestSyncResponse;
 import br.com.ledtom.antenna.model.entity.Channel;
 import br.com.ledtom.antenna.model.entity.Command;
 import br.com.ledtom.antenna.model.entity.Machine;
+import br.com.ledtom.antenna.model.entity.NewsList;
 import br.com.ledtom.antenna.model.enums.MachineCommand;
 import br.com.ledtom.antenna.model.enums.MachineStatus;
 import br.com.ledtom.antenna.sessioncomponents.ApplicationInfo;
@@ -157,9 +158,12 @@ public class MachineController {
     @Get @Path("/machines/getNews/{hash}")
     public void getNews(String hash) {
         try {
-			result.use(Results.json()).from(publisherService.getNews(Arrays.asList(Source.UOL))).serialize();
-		} catch (Exception e) {
-			result.use(Results.http()).body("{}");
-		}
+            NewsList newsList = new NewsList();
+            newsList.setNews(publisherService.getNews(Arrays.asList(Source.UOL)));
+            result.use(Results.json()).withoutRoot().from(newsList).recursive().serialize();
+
+        } catch (Exception e) {
+            result.use(Results.http()).body("{}");
+        }
     }
 }

@@ -31,7 +31,7 @@
 						<div class="row">
 							<div class="span12 center">
 								<ul class="breadcrumb">
-								  	<li><a href="home">Principal</a> <span class="divider">/</span></li>
+								  	<li><a href="/">Principal</a> <span class="divider">/</span></li>
 								  	<li class="active">Vídeos</li>
 								</ul>
 							</div>

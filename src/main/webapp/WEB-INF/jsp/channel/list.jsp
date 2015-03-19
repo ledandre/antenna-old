@@ -31,7 +31,7 @@
 						<div class="row">
 							<div class="span12 center">
 								<ul class="breadcrumb">
-								  	<li><a href="home">Principal</a> <span class="divider">/</span></li>
+								  	<li><a href="/">Principal</a> <span class="divider">/</span></li>
 								  	<li class="active">Canais</li>
 								</ul>
 							</div>
@@ -43,7 +43,7 @@
 									Nenhum canal cadastrado.
 								</c:if>
 								<c:if test="${not empty channels}">
-									<table class="table table-striped">
+									<table class="table table-striped table-condensed table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>Nome</th>

@@ -33,7 +33,7 @@
 						<div class="row">
 							<div class="span12 center">
 								<ul class="breadcrumb">
-								  	<li><a href="home">Principal</a> <span class="divider">/</span></li>
+								  	<li><a href="/">Principal</a> <span class="divider">/</span></li>
 								  	<li class="active">Máquinas novas (pendentes)</li>
 								</ul>
 							</div>
@@ -45,7 +45,7 @@
 									Nenhuma nova máquina.<br><br>
 								</c:if>
 								<c:if test="${not empty pending}">
-									<table class="table table-striped">
+									<table class="table table-striped table-condensed table-bordered table-hover">
 										<thead>
 											<tr>
 												<th>Nome</th>
