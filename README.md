@@ -29,5 +29,5 @@ Versões e funcionalidades
 Time
 ----
 
-- Eduardo Andre (Programador)
-- Leandro T. Andre (Analista desenvolvedor)
+- Eduardo Andre
+- Leandro T. Andre
